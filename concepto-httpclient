@@ -7,6 +7,8 @@ iniciamos con lo mas básico que es su abstracción conceptual. Y para esto nece
 - http
 - https
 - client 
+- SSL/TLS
+- dns 
 - dns 
 - tcp 
 - ip 
@@ -19,22 +21,18 @@ iniciamos con lo mas básico que es su abstracción conceptual. Y para esto nece
 Cliente: 
 - Es un programa que solicita información a otro programa o sistema 
  
-Cliente: 
-- Es un programa que recibe una peticion o informacion de otro sistema
+Servidor: 
+- Es un programa que recibe una peticion o información de otro sistema
 
 Ahora yo lo veo y entiendo este concepto relacionando la linguística que aprendí en el 
 colegio: En una conversación tenemos el emisor que se encarga de dar un mensaje, tenemos el 
 receptor que recibe el mensaje y hay que incluir el medio en que se transmite la onda sonora 
 para poder enviar el mensaje. 
+
 Comparación: 
 	Emisor -> (envia mensaje) -> Representa el Cliente 
-	Receptor -> (recibe mensaje) -> Representa el Servido 
+	Receptor -> (recibe mensaje) -> Representa el Servidor 
 	Medio de transporte -> (aire) -> Representa el Protocolo
- 
- 
-  
-	resumen: 
-					- Es el protocolo de la web para el intercamio de información entre cliente-servidor
 
 Protocolo: 
 - Son un conjunto de reglas y convenciones para determinar como se van a comunicar dos sistemas. 
@@ -47,18 +45,41 @@ Protocolo:
 	resumen: 
 					- Es el protocolo de la web para el intercamio de información entre cliente-servidor
 Http:
-- El significado de http es hyper text transfer protocol es el conjunto de reglas de comunicación 
-  entre sistemas encaminado para la comunicón entre estos que fue determinado para la web. Permite 
-  que los clientes y los servidores intercambien información generalmente en formato html, json o xml.  
+- El significado de http es hyper text transfer protocol, es el conjunto de reglas de comunicación 
+  entre sistemas encaminado para la comunicación entre estos. Permite que los clientes y los servidores 
+	intercambien información generalmente en formato html, json o xml.  
   
 	resumen: 
 					- Es el protocolo de la web para el intercamio de información entre cliente-servidor
-- client 
+
+
+Https:
+- Por sus siglas en ingles hyper text transfers protocol secure, es el protocolo seguro de transferencia 
+	de datos de la web utilizando el cifrado y la autenticación para garantizar la seguridad de los mismos.
+	Este cifrado esta basado en la seguridad de textos SSL/TLS para crear un canal cifrado. De este modo se 
+	consigue que la informacion sensible no pueda ser alcanzada por un atacante que haya penetrado el sistema
+	ya que obtendra un un flujo de datos cifrado el cual le sera imposible de descifrar.
+	El puerto estandar para este protocolo es 443.
+  
+	resumen: 
+					- Básicamente es la versión mejorada de el protocolo http,  encriptando los datos a la hora de 
+					enviarlos para la seguridad de estos.
+
+Https:
+- Por sus siglas en ingles hyper text transfers protocol secure, es el protocolo seguro de transferencia 
+	de datos de la web utilizando el cifrado y la autenticación para garantizar la seguridad de los mismos.
+  
+	resumen: 
+					- Básicamente es la versión mejorada de el protocolo http,  encriptando los datos a la hora de 
+					enviarlos para la seguridad de estos.
+
+
+
+
+
 - dns 
 - tcp 
 - ip 
 - sockets 
 - tcp sockets 
 - tls
-- servidor 
-
