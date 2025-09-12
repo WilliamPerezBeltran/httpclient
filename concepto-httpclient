@@ -1,0 +1,64 @@
+Vamos a desarrollar la construcción de un objecto httpclient solamente por el deseo de aprender el funcionamiento.
+Para este procedimiento es importante tener los conceptos claros de lo que realmente se piensa hacer, por lo tanto 
+iniciamos con lo mas básico que es su abstracción conceptual. Y para esto necesitamos conocer los siguientes conceptos:
+- cliente 
+- Servidor  
+- Protocolo 
+- http
+- https
+- client 
+- dns 
+- tcp 
+- ip 
+- sockets 
+- tcp sockets 
+- tls
+
+
+
+Cliente: 
+- Es un programa que solicita información a otro programa o sistema 
+ 
+Cliente: 
+- Es un programa que recibe una peticion o informacion de otro sistema
+
+Ahora yo lo veo y entiendo este concepto relacionando la linguística que aprendí en el 
+colegio: En una conversación tenemos el emisor que se encarga de dar un mensaje, tenemos el 
+receptor que recibe el mensaje y hay que incluir el medio en que se transmite la onda sonora 
+para poder enviar el mensaje. 
+Comparación: 
+	Emisor -> (envia mensaje) -> Representa el Cliente 
+	Receptor -> (recibe mensaje) -> Representa el Servido 
+	Medio de transporte -> (aire) -> Representa el Protocolo
+ 
+ 
+  
+	resumen: 
+					- Es el protocolo de la web para el intercamio de información entre cliente-servidor
+
+Protocolo: 
+- Son un conjunto de reglas y convenciones para determinar como se van a comunicar dos sistemas. 
+  En este conjunto de reglas se determina como se van a enviar los datos, como se va iniciar y 
+  terminar la comunicación, en caso de error qué mensajes van hacer mostrados, cuales son esos 
+	mensajes de error. Por otro lado se va a determinar como se va enviar los mensajes que se quieren 
+	enviar y como se van a recibir. El objetivo de tener un protocolo es estandarizar como se van a 
+	hacer las cosas y tener un lenguaje comun entre los sistemas.
+  
+	resumen: 
+					- Es el protocolo de la web para el intercamio de información entre cliente-servidor
+Http:
+- El significado de http es hyper text transfer protocol es el conjunto de reglas de comunicación 
+  entre sistemas encaminado para la comunicón entre estos que fue determinado para la web. Permite 
+  que los clientes y los servidores intercambien información generalmente en formato html, json o xml.  
+  
+	resumen: 
+					- Es el protocolo de la web para el intercamio de información entre cliente-servidor
+- client 
+- dns 
+- tcp 
+- ip 
+- sockets 
+- tcp sockets 
+- tls
+- servidor 
+
