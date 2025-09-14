@@ -1,4 +1,4 @@
------ 01_Procedimiento_de_envio_de_datos_por_el_protocolo_tcp-ip -----
+-----01_Procedimiento_de_envio_de_datos_por_el_protocolo_tcp/ip_-----
 
 La transmición inicia con la entrega de datos por parte del cliente. 
 Entonces los datos que se van a enviar se deviden por paquetes.
@@ -39,7 +39,7 @@ del servidor y el servidor vera el string completo o lo que se le haya enviado.
 
 
 
------ 02_Procedimiento_de_empaquetamiento_de_datos_por_el_protocolo_tcp-ip -----
+----- Procedimiento de empaquetamiento de datos por el protocolo tcp/ip ----- 
 
 Por ejemplo yo voy a enviar el string "rasta como pollo y bal" 
 
