@@ -67,7 +67,19 @@ Https:
 
 Https:
 - Por sus siglas en ingles hyper text transfers protocol secure, es el protocolo seguro de transferencia 
-	de datos de la web utilizando el cifrado y la autenticación para garantizar la seguridad de los mismos.
+  de datos de la web utilizando el cifrado y la autenticación para garantizar la seguridad de los mismos.
+  El protocolo de https utiliza el protocolo criptográfico ssl/tls que proporciona comunicación segura en la red.
+
+ssl/tls:
+- ssl(secure socket layer)/tls(transport layer security) en la linea de tiempo primero fue ssl y despues tls. 
+  Son procolos criptograficos que proporcionan seguridad en la red por medio de criptografia. Por lo tanto 
+  existen unos pasos primarios para poder generar una confianza de comunicacion entre ambas partes, que son:
+  1. Se establece un acuerdo entre ambas partes (cliente-servidor) para pactar el tipo de algoritmo que se va a 
+  utilizar para la comunicación segura. 
+  2. Intercambio de claves publicas y certificados digitales , estos para la autenticación segura. 
+  3. Cifrado simétrico
+
+  
   
 	resumen: 
 					- Básicamente es la versión mejorada de el protocolo http,  encriptando los datos a la hora de 
