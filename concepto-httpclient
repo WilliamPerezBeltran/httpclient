@@ -1,6 +1,7 @@
 Vamos a desarrollar la construcción de un objecto httpclient solamente por el deseo de aprender el funcionamiento.
 Para este procedimiento es importante tener los conceptos claros de lo que realmente se piensa hacer, por lo tanto 
 iniciamos con lo mas básico que es su abstracción conceptual. Y para esto necesitamos conocer los siguientes conceptos:
+
 - cliente 
 - Servidor  
 - Protocolo 
@@ -36,60 +37,79 @@ Comparación:
 
 Protocolo: 
 - Son un conjunto de reglas y convenciones para determinar como se van a comunicar dos sistemas. 
-  En este conjunto de reglas se determina como se van a enviar los datos, como se va iniciar y 
-  terminar la comunicación, en caso de error qué mensajes van hacer mostrados, cuales son esos 
-	mensajes de error. Por otro lado se va a determinar como se va enviar los mensajes que se quieren 
-	enviar y como se van a recibir. El objetivo de tener un protocolo es estandarizar como se van a 
-	hacer las cosas y tener un lenguaje comun entre los sistemas.
+En este conjunto de reglas se determina como se van a enviar los datos, como se va iniciar y 
+terminar la comunicación, en caso de error qué mensajes van hacer mostrados, cuales son esos 
+mensajes de error. Por otro lado se va a determinar como se va enviar los mensajes que se quieren 
+enviar y como se van a recibir. El objetivo de tener un protocolo es estandarizar como se van a 
+hacer las cosas y tener un lenguaje comun entre los sistemas.
   
 	resumen: 
-					- Es el protocolo de la web para el intercamio de información entre cliente-servidor
+	- Es el protocolo de la web para el intercamio de información entre cliente-servidor
 Http:
 - El significado de http es hyper text transfer protocol, es el conjunto de reglas de comunicación 
-  entre sistemas encaminado para la comunicación entre estos. Permite que los clientes y los servidores 
-	intercambien información generalmente en formato html, json o xml.  
+entre sistemas encaminado para la comunicación entre estos. Permite que los clientes y los servidores 
+intercambien información generalmente en formato html, json o xml.  
   
 	resumen: 
-					- Es el protocolo de la web para el intercamio de información entre cliente-servidor
-
+	- Es el protocolo de la web para el intercamio de información entre cliente-servidor
 
 Https:
 - Por sus siglas en ingles hyper text transfers protocol secure, es el protocolo seguro de transferencia 
-	de datos de la web utilizando el cifrado y la autenticación para garantizar la seguridad de los mismos.
-	Este cifrado esta basado en la seguridad de textos SSL/TLS para crear un canal cifrado. De este modo se 
-	consigue que la informacion sensible no pueda ser alcanzada por un atacante que haya penetrado el sistema
-	ya que obtendra un un flujo de datos cifrado el cual le sera imposible de descifrar.
-	El puerto estandar para este protocolo es 443.
+de datos de la web utilizando el cifrado y la autenticación para garantizar la seguridad de los mismos.
+Este cifrado esta basado en la seguridad de textos SSL/TLS para crear un canal cifrado. De este modo se 
+consigue que la informacion sensible no pueda ser alcanzada por un atacante que haya penetrado el sistema
+ya que obtendra un un flujo de datos cifrado el cual le sera imposible de descifrar.
+El puerto estandar para este protocolo es 443.
   
 	resumen: 
-					- Básicamente es la versión mejorada de el protocolo http,  encriptando los datos a la hora de 
+	- Básicamente es la versión mejorada de el protocolo http,  encriptando los datos a la hora de 
 					enviarlos para la seguridad de estos.
 
 Https:
 - Por sus siglas en ingles hyper text transfers protocol secure, es el protocolo seguro de transferencia 
-  de datos de la web utilizando el cifrado y la autenticación para garantizar la seguridad de los mismos.
-  El protocolo de https utiliza el protocolo criptográfico ssl/tls que proporciona comunicación segura en la red.
+de datos de la web utilizando el cifrado y la autenticación para garantizar la seguridad de los mismos.
+El protocolo de https utiliza el protocolo criptográfico ssl/tls que proporciona comunicación segura en la red.
 
 ssl/tls:
 - ssl(secure socket layer)/tls(transport layer security) en la linea de tiempo primero fue ssl y despues tls. 
-  Son procolos criptograficos que proporcionan seguridad en la red por medio de criptografia. Por lo tanto 
-  existen unos pasos primarios para poder generar una confianza de comunicacion entre ambas partes, que son:
-  1. Se establece un acuerdo entre ambas partes (cliente-servidor) para pactar el tipo de algoritmo que se va a 
-  utilizar para la comunicación segura. 
-  2. Intercambio de claves publicas y certificados digitales , estos para la autenticación segura. 
-  3. Cifrado simétrico
+Son procolos criptograficos que proporcionan seguridad en la red por medio de criptografia. Por lo tanto 
+existen unos pasos primarios para poder generar una confianza de comunicacion entre ambas partes, que son:
+1. Se establece un acuerdo entre ambas partes (cliente-servidor) para pactar el tipo de algoritmo que se va a 
+utilizar para la comunicación segura. 
+2. Intercambio de claves publicas y certificados digitales , estos para la autenticación segura. 
+3. Cifrado simétrico
 
-  
-  
-	resumen: 
-					- Básicamente es la versión mejorada de el protocolo http,  encriptando los datos a la hora de 
-					enviarlos para la seguridad de estos.
+ssl/tls:
+- ssl(secure socket layer)/tls(transport layer security) en la linea de tiempo primero fue ssl y despues tls. 
+Son procolos criptograficos que proporcionan seguridad en la red por medio de criptografia. Por lo tanto 
+existen unos pasos primarios para poder generar una confianza de comunicacion entre ambas partes, que son:
+1. Se establece un acuerdo entre ambas partes (cliente-servidor) para pactar el tipo de algoritmo que se va a 
+utilizar para la comunicación segura. 
+2. Intercambio de claves publicas y certificados digitales , estos para la autenticación segura. 
+3. Cifrado simétrico
 
 
 
 
+tcp:
+- tcp(protocolo de control de transmisión o transmission control protocol) 
 
-- dns 
+
+
+
+dns:
+- dns(domain name system) Es un sistema que traduce los nombres de las dominios a direcciones IP (como 142.250.72.14) 
+
+
+dns:
+- dns(domain name system) Es un sistema que traduce los nombres de las dominios a direcciones IP (como 142.250.72.14) 
+
+
+dns:
+- dns(domain name system) Es un sistema que traduce los nombres de las dominios a direcciones IP (como 142.250.72.14) 
+
+
+
 - tcp 
 - ip 
 - sockets 
