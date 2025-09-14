@@ -1,2 +1,3 @@
 https://mirror.math.princeton.edu/pub/RFCs/rfc9293.html?utm_source=chatgpt.com
 http://www.kohala.com/start/tcpipiv1.html
+https://en.wikipedia.org/wiki/TCP/IP_Illustrated?utm_source=chatgpt.com
