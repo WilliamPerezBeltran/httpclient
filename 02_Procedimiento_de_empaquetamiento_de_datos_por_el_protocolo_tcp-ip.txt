@@ -1,7 +1,6 @@
 
 ----- 02_Procedimiento_de_empaquetamiento_de_datos_por_el_protocolo_tcp-ip -----
-
-Por ejemplo yo voy a enviar el string "rasta como pollo y bal" 
+Por ejemplo yo voy a enviar el string "la rata azul se ava a culiar"
 
 0: 108 → l
 1: 97 → a
@@ -80,6 +79,8 @@ Cliente (192.168.1.20:49152) -----------------------> Servidor (104.21.2.33:80)
    "ul se ava "   Seq=10
    "a culiar "    Seq=20
 
+
+   
 
 
 
