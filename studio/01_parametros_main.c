@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(int argc, char **argv){
-	printf("--------- puntero que apunta a punteroa --------");
+	printf("--------- puntero que apunta a puntero --------");
 	printf("numero de argumentos: %d \n",argc );
 	
 	for(int i=0;i<argc;i++){
