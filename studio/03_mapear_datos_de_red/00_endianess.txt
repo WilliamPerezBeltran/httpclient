@@ -1,0 +1,41 @@
+
+¿Qué es el endianess?
+
+	El endianess define en qué orden una computadora guarda los bytes de un número en memoria.
+	Un número grande (de más de 1 byte) se compone de varios bytes. Dependiendo de la arquitectura, 
+	esos bytes pueden guardarse del más significativo al menos significativo o al revés.
+
+- Tipos principales
+	
+	1. Big-endian
+		El byte más significativo (MSB) se guarda primero (en la dirección de memoria más baja).
+		Es como escribir un número en la forma en que normalmente lo leemos.
+		
+		Ejemplo: el número 0x12345678 en memoria se ve así:
+		12 34 56 78
+
+	2. Little-endian
+		El byte menos significativo (LSB) se guarda primero (en la dirección de memoria más baja).
+		Es como escribir el número “al revés” byte a byte.
+		
+		El mismo número 0x12345678 en memoria se ve así:
+		78 56 34 12
+
+Ejemplo visual
+
+Imagina que tienes el número 305419896 en decimal, que en hexadecimal es 0x12345678.
+
+1. En big-endian:
+		Dirección baja ->12 34 56 78 <-Dirección alta
+
+2.En little-endian:
+		Dirección baja ->78 56 34 12 <-Dirección alta
+
+¿Por qué importa?
+
+Dos máquinas distintas (una big-endian y otra little-endian) pueden interpretar 
+distinto los mismos bytes en la red.
+Por eso, en comunicaciones de red se define un estándar: network byte order = big-endian.
+Las funciones htons, htonl, ntohs, ntohl convierten entre el formato de la máquina y el 
+formato estándar de red.
+

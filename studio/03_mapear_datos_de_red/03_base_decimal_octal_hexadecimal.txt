@@ -1,0 +1,25 @@
+El prefijo 0x
+
+En C (y en muchos lenguajes), cuando se escribe un número:
+	- 0x al inicio significa que el número está escrito en hexadecimal (base 16).
+	- Si no pones nada, el número se interpreta en decimal (base 10).
+	- Si pusieras un 0 al inicio (ej: 0123), en C clásico significaba octal (base 8).
+
+Ejemplo con tu número
+
+	0x12345678 está en hexadecimal.
+	El 0x es solo un prefijo para decir "lo que sigue está en base 16".
+
+Los dígitos válidos en hexadecimal van de 0 a 9 y de A a F (donde A=10, B=11, …, F=15).
+
+Entonces:
+
+0x12345678
+= (1 × 16^7) + (2 × 16^6) + (3 × 16^5) + (4 × 16^4) +
+  (5 × 16^3) + (6 × 16^2) + (7 × 16^1) + (8 × 16^0)
+= 305419896 en decimal
+
+En resumen:
+1. El 0 no significa "cero inicial", es parte del prefijo.
+2. El x indica "esto es hexadecimal".
+3. Lo que sigue (12345678) es el número en base 16.

@@ -1,0 +1,35 @@
+Los computadoras tienen diferentes arquitecturas 32 bits o 64bit y el compilador guarda los campos de memorias 
+de los struct de una manera no compacta porque los guarda de 2,4,8 bytes para que sea mas eficiente para el 
+compilador y el procesador sea mas rapido. Por lo tanto para los structs el manejo es diferente ya que hay 
+serializarlos y deserializarlos por la net. Algunas arquitecturas son little-endian y otra son big-endinan 
+por lo tanto su estructura es distinta y esto hace que su manejo sea distinto.
+
+En este ejemplo 
+tenemos un struct 
+
+struct Memoria{
+	int x; -> 4 bytes
+	char  y; -> 1 bytes
+};
+
+aunque paresca que deberian ocupar en memoria 5 bytes el compilar ocupa 8 bytes puesto que debe agregar 
+3 bytes de padding que empiece en una direccion multiplo de 4. Y estyo lo hace por cuestiones de eficiencia 
+del compilardor. Por lo tanto 3 bytes son relleno por alineacion. 
+ 
+Esos bytes que no sirven el receptor puede mal interpretarlos y esto es lo que se ataca para 
+poder capturar los datos que son. Y convertir estos datos a una serializacion standar. 
+Este formato estandar se llama "network byte order" o "host byte order". Es simplemente 
+serializar en un formato estandar. 
+
+Por lo tanto lo que nos toca hacer es cuando enviemos datos de host -> network utilizamos
+las funciones htons() y htonl()
+y cuando deserializamos "network -> host" utilizamos las funciones ntohs() ntohl() 
+
+# include <arpa/inet.h> (linux/unix)
+# include <winsock2.h> (windows)
+
+resumen: 
+	- htons -> host to network short (16 bits)
+	- htonl -> host to network large (32 bits)
+	- ntohs -> network to host short (16 bits) 
+	- ntohl -> network to host large (32 bits) 

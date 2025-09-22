@@ -1,0 +1,32 @@
+2. ¿Y qué pasa con char?
+
+Un char en C ocupa 1 byte (8 bits).
+Como solo tiene un byte, no existe el problema de endianness.
+El byte se guarda y se transmite tal cual.
+
+Por eso no necesitas aplicar htons o htonl a un char.
+Lo único que haces es copiarlo al buffer con memcpy o asignación directa.
+
+3. Ejemplo comparativo
+
+Supón que tienes:
+	char c = 'A';         // 0x41 (1 byte)
+	short s = 0x1234;     // 2 bytes
+	int i = 0x12345678;   // 4 bytes
+
+
+En una máquina little-endian, en memoria estarían así:
+	c: 41
+	s: 34 12
+	i: 78 56 34 12
+
+En la red (big-endian), deberían estar así:
+	c: 41                (igual, porque es solo un byte)
+	s: 12 34             (hay que usar htons)
+	i: 12 34 56 78       (hay que usar htonl)
+
+
+En resumen:
+	A los enteros de 2 bytes o más hay que aplicarles conversión (htons, htonl).
+	A los tipos de 1 byte (char, unsigned char, int8_t) no, porque no hay orden 
+	de bytes que cambiar.

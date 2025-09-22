@@ -1,0 +1,184 @@
+¿Qué es el endianess?
+
+	El endianess define en qué orden una computadora guarda los bytes de un número en memoria.
+	Un número grande (de más de 1 byte) se compone de varios bytes. Dependiendo de la arquitectura, 
+	esos bytes pueden guardarse del más significativo al menos significativo o al revés.
+
+- Tipos principales
+	
+	1. Big-endian
+		El byte más significativo (MSB) se guarda primero (en la dirección de memoria más baja).
+		Es como escribir un número en la forma en que normalmente lo leemos.
+		
+		Ejemplo: el número 0x12345678 en memoria se ve así:
+		12 34 56 78
+
+	2. Little-endian
+		El byte menos significativo (LSB) se guarda primero (en la dirección de memoria más baja).
+		Es como escribir el número “al revés” byte a byte.
+		
+		El mismo número 0x12345678 en memoria se ve así:
+		78 56 34 12
+
+Ejemplo visual
+
+Imagina que tienes el número 305419896 en decimal, que en hexadecimal es 0x12345678.
+
+1. En big-endian:
+		Dirección baja ->12 34 56 78 <-Dirección alta
+
+2.En little-endian:
+		Dirección baja ->78 56 34 12 <-Dirección alta
+
+¿Por qué importa?
+
+Dos máquinas distintas (una big-endian y otra little-endian) pueden interpretar 
+distinto los mismos bytes en la red.
+Por eso, en comunicaciones de red se define un estándar: network byte order = big-endian.
+Las funciones htons, htonl, ntohs, ntohl convierten entre el formato de la máquina y el 
+formato estándar de red.
+
+
+
+1. La memoria y las estructuras
+
+	Cuando declaras una struct en C, el compilador guarda sus campos en memoria, 
+	pero no necesariamente de forma continua y compacta. El compilador puede agregar relleno 
+	(padding) para alinear los datos en múltiplos de 2, 4 u 8 bytes. Esto mejora el rendimiento 
+	del procesador, pero hace que la estructura en memoria no sea idéntica a la suma 
+	de los tamaños de sus campos.
+
+	Por ejemplo:
+
+	struct Ejemplo {
+			char a;   // 1 byte
+			int b;    // 4 bytes
+	};
+
+	Aunque parece que debería ocupar 5 bytes, puede ocupar 8 bytes en memoria porque el 
+	compilador mete 3 bytes vacíos después de a para que b empiece en una dirección 
+	múltiplo de 4.
+
+2. Problema en redes
+
+	Las computadoras son diferentes:
+		- Algunas son little-endian (almacenan el byte menos significativo primero).
+		- Otras son big-endian (almacenan el byte más significativo primero).
+
+	Las redes siempre usan "big-endian", también llamado "network byte order".
+	Si envías directamente una struct en bruto:
+		1. Puede llevar bytes de padding que no sirven.
+		2. El receptor puede interpretar mal los enteros por el tema del endianness.
+
+
+3. La solución -> Serialización
+
+	En redes no enviamos estructuras “tal cual”. Lo que hacemos es:
+	- Serializar: convertir la estructura en una secuencia ordenada de bytes, 
+	sin padding y en network byte order.
+	- Deserializar: cuando llega al otro lado, reconstruimos la struct original 
+	leyendo esos bytes en el mismo orden.
+
+	Esto se hace campo por campo:
+	1. Tomas el valor del campo.
+	2. Lo conviertes a network byte order (si es un entero).
+	3. Lo copias a un buffer de bytes.
+
+	Cuando recibes:
+	1. Tomas los bytes del buffer.
+	2. Los conviertes de network byte order a host byte order.
+	3. Los asignas a los campos de la struct.
+
+4. Resumen teórico
+	1. Una struct es una representación en memoria local, no universal.
+	2. Para que se entienda en cualquier máquina a través de la red, 
+	hay que pasar por un proceso de serialización y deserialización.
+	3. Este proceso garantiza que los datos sean interpretados de la 
+	misma forma en distintos sistemas, evitando problemas de padding y endianness.
+
+
+convertir network a host: 
+Cuando yo digo “convierte de network a host” me refiero a que los datos en la red 
+viajan siempre en un formato estándar llamado network byte order (big-endian). 
+Pero tu computadora puede trabajar de forma diferente:
+
+ 1. Host byte order -> el formato que usa tu máquina localmente 
+ (puede ser little-endian o big-endian, según la arquitectura).
+ 2. Network byte order ->  el formato obligatorio en comunicaciones 
+ de red (big-endian).
+
+- Ejemplo con un número
+Supongamos que tienes el número entero 0x12345678.
+
+	En big-endian (network) se guarda en memoria así:
+	12 34 56 78
+
+	En little-endian (muchos PCs) se guarda en memoria así:
+	78 56 34 12
+
+Si una PC little-endian envía su entero directamente,
+otra máquina big-endian lo leería al revés.
+
+La solución
+Existen funciones estándar en <arpa/inet.h> (en Linux/Unix) o <winsock2.h> (en Windows):
+	- htons -> host to network short (16 bits)
+	- htonl -> host to network long (32 bits)
+	- ntohs -> network to host short
+	- ntohl -> network to host long
+
+flujo completo 
+1. Antes de enviar asegurarse que los datos viajen en big-ending 
+
+#include <arpa/inet.h>
+int x = 234;
+int net_x = htonl(x);
+
+
+Despues de recibir -> conviertes de network a host para que programa lo qentienda 
+en el orden correcto.
+
+int y; 
+memcpy(&y,buffer,sizeof(int));
+y = ntohl(y);
+
+Entonces:
+	Host -> Network: preparas el dato para enviarlo de forma estándar.
+	Network -> Host: adaptas el dato recibido al formato que tu máquina entiende.
+
+===========================================
+===========================================
+===========================================
+
+2. ¿Y qué pasa con char?
+
+Un char en C ocupa 1 byte (8 bits).
+Como solo tiene un byte, no existe el problema de endianness.
+El byte se guarda y se transmite tal cual.
+
+Por eso no necesitas aplicar htons o htonl a un char.
+Lo único que haces es copiarlo al buffer con memcpy o asignación directa.
+
+3. Ejemplo comparativo
+
+Supón que tienes:
+	char c = 'A';         // 0x41 (1 byte)
+	short s = 0x1234;     // 2 bytes
+	int i = 0x12345678;   // 4 bytes
+
+
+En una máquina little-endian, en memoria estarían así:
+	c: 41
+	s: 34 12
+	i: 78 56 34 12
+
+En la red (big-endian), deberían estar así:
+	c: 41                (igual, porque es solo un byte)
+	s: 12 34             (hay que usar htons)
+	i: 12 34 56 78       (hay que usar htonl)
+
+
+En resumen:
+	A los enteros de 2 bytes o más hay que aplicarles conversión (htons, htonl).
+	A los tipos de 1 byte (char, unsigned char, int8_t) no, porque no hay orden de bytes que cambiar.
+
+
